@@ -1,0 +1,55 @@
+{
+    "[dart]": {
+      "editor.formatOnSave": true,
+      "editor.formatOnType": true,
+      "editor.rulers": [
+        160
+      ],
+      "editor.selectionHighlight": false,
+      "editor.suggest.snippetsPreventQuickSuggestions": false,
+      "editor.suggestSelection": "first",
+      "editor.tabCompletion": "onlySnippets",
+      "editor.wordBasedSuggestions": "off",
+      "editor.codeActionsOnSave": {
+        "source.organizeImports": "always",
+      }
+    },
+    "dart.openDevTools": "flutter",
+    "window.openFilesInNewWindow": "default",
+    "explorer.confirmDragAndDrop": true,
+    "explorer.confirmDelete": true,
+    "dart.lineLength": 160,
+    "editor.rulers": [
+      160
+    ],
+    "workbench.editor.enablePreview": false,
+    "workbench.editor.enablePreviewFromQuickOpen": false,
+    "dart.debugExternalLibraries": true,
+    "dart.debugSdkLibraries": false,
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "files.exclude": {
+      ".dart_tool": true,
+      ".flutter-plugins": true,
+      ".flutter-plugins-dependencies": true,
+      ".fvm/**": true,
+      ".metadata": true,
+      ".packages": true,
+      ".vscode": true,
+      ".github": true,
+      "**/.idea": true,
+      "**/*.d.ts": true,
+      "**/*.iml": true,
+      "**/coverage": true,
+      "**/LICENSE": true,
+      "**/node_modules": true,
+      "build": true,
+      "cdk.out": true,
+      "generated/**": true
+    },
+    "dart.devToolsBrowser": "default",
+    "editor.formatOnSave": true,
+    "redhat.telemetry.enabled": false,
+    "editor.inlineSuggest.enabled": true,
+    "dart.debugExternalPackageLibraries": false,
+    "dart.updateDevTools": false,
+  }
