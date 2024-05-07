@@ -144,14 +144,19 @@ class _PostScreenState extends State<PostScreen> {
                       options: MutationOptions(
                         document: gql(newBlog),
                         onCompleted: (dynamic resultData) {
-                          Map<String, dynamic> data = resultData['createBlog'];
-                          Map<String, dynamic> postData = data['blogPost'];
-                          Post newPost = Post.fromJson(postData);
-                          setState(() => post = newPost);
-                          setState(() => isAddPostVisible = false);
+                          if (resultData == null) {
+                            getIt<Toast>().showMessage(
+                                context: context, title: "Error!", message: "Unable to create post. Check internet and try again!", type: ToastType.error);
+                          } else {
+                            Map<String, dynamic> data = resultData['createBlog'];
+                            Map<String, dynamic> postData = data['blogPost'];
+                            Post newPost = Post.fromJson(postData);
+                            setState(() => post = newPost);
+                            setState(() => isAddPostVisible = false);
 
-                          getIt<Toast>()
-                              .showMessage(context: context, title: "Success!", message: "Post created! Go back to see all posts", type: ToastType.success);
+                            getIt<Toast>()
+                                .showMessage(context: context, title: "Success!", message: "Post created! Go back to see all posts", type: ToastType.success);
+                          }
                         },
                         onError: (OperationException? error) {
                           error;
@@ -188,13 +193,18 @@ class _PostScreenState extends State<PostScreen> {
                     options: MutationOptions(
                       document: gql(updateBlog),
                       onCompleted: (dynamic resultData) {
-                        Map<String, dynamic> data = resultData['updateBlog'];
-                        Map<String, dynamic> postData = data['blogPost'];
-                        Post newPost = Post.fromJson(postData);
-                        setState(() => post = newPost);
+                        if (resultData == null) {
+                          getIt<Toast>().showMessage(
+                              context: context, title: "Error!", message: "Unable to update post. Check internet and try again!", type: ToastType.error);
+                        } else {
+                          Map<String, dynamic> data = resultData['updateBlog'];
+                          Map<String, dynamic> postData = data['blogPost'];
+                          Post newPost = Post.fromJson(postData);
+                          setState(() => post = newPost);
 
-                        getIt<Toast>()
-                            .showMessage(context: context, title: "Success!", message: "Post updated! Go back to see all posts", type: ToastType.success);
+                          getIt<Toast>()
+                              .showMessage(context: context, title: "Success!", message: "Post updated! Go back to see all posts", type: ToastType.success);
+                        }
                       },
                       onError: (OperationException? error) {
                         error;
@@ -231,7 +241,11 @@ class _PostScreenState extends State<PostScreen> {
                     options: MutationOptions(
                       document: gql(deleteBlog),
                       onCompleted: (dynamic resultData) {
-                        context.router.maybePopTop('delete');
+                        if (resultData == null) {
+                          getIt<Toast>().showMessage(
+                              context: context, title: "Error!", message: "Unable to delete post. Check internet and try again!", type: ToastType.error);
+                        } else
+                          context.router.maybePopTop('delete');
                       },
                       onError: (OperationException? error) {
                         error;
