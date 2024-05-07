@@ -10,7 +10,7 @@ abstract class BlogGraphqlClient {
 class BlogGraphqlClientImpl implements BlogGraphqlClient {
   @override
   void mutation({required String document, required Map<String, dynamic> variable}) {
-    // TODO: implement mutation
+    
   }
 
   @override
