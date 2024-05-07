@@ -9,9 +9,6 @@ check:
 	flutter analyze
 	flutter test
 
-generate-build:
-	flutter build apk --release
-
 setup: get codegen
 
 
