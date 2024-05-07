@@ -19,10 +19,12 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
+  HomeCubit cubit = getIt<HomeCubit>();
   @override
   void initState() {
     super.initState();
     posts = widget.posts;
+    cubit.getBookmarks();
   }
 
   List<Post> posts = [];
@@ -82,14 +84,12 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
         ),
         Expanded(
           child: BlocConsumer<HomeCubit, HomeState>(
-              bloc: getIt<HomeCubit>(),
-              listener: (context, state) {
-                state.maybeWhen(
-                  bookmarked: (posts) => setState(() => bookmarkedPosts = posts),
-                  orElse: () {},
-                );
-              },
+              bloc: cubit,
+              listener: (context, state) {},
               builder: (context, state) {
+                if (state is HomeBookmarkedState) {
+                  bookmarkedPosts = state.posts;
+                }
                 return PageView(
                   onPageChanged: (value) {
                     setState(() => pageIndex = value);
@@ -109,10 +109,11 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                     ),
                     SingleChildScrollView(
                       child: Column(
-                        children: bookmarkedPosts.map(
+                        children: bookmarkedPosts.reversed.toList()
+                        .where((element) => posts.contains(element))
+                        .map(
                           (post) {
-                            bool isBookmarked = bookmarkedPosts.contains(post);
-                            return BlogTile(bookmarkedPosts: bookmarkedPosts, isBookmarked: isBookmarked, post: post, onReload: widget.refetchCallback);
+                            return BlogTile(bookmarkedPosts: bookmarkedPosts, isBookmarked: true, post: post, onReload: widget.refetchCallback);
                           },
                         ).toList(),
                       ),

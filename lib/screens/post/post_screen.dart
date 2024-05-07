@@ -262,5 +262,3 @@ class _PostScreenState extends State<PostScreen> {
     );
   }
 }
-
-//TODO: bookmark
