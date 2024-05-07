@@ -3,19 +3,17 @@
 
 
 
+# Simple Blog
 
-
-# Github Explorer
-
-Github Explorer is a Flutter mobile app designed to provide users with an engaging platform to explore GitHub profiles and repositories, even in environments with limited internet connectivity.
+Simple Blog is a Flutter mobile app designed to provide users with an engaging platform to explore GitHub profiles and repositories, even in environments with limited internet connectivity.
 
 ## Overview
 
-Github Explorer utilizes Flutter's capabilities along with various packages and tools to offer a seamless browsing experience for GitHub users. With lightweight MVC architecture, Bloc for state management, auto_route for routing, GetIt & Injectable for dependency injection, and other technologies, Github Explorer ensures efficient performance and smooth navigation.
+Simple Blog utilizes Flutter's capabilities along with various packages and tools to offer a seamless browsing experience for GitHub users. With lightweight MVC architecture, Bloc for state management, auto_route for routing, GetIt & Injectable for dependency injection, and other technologies, Simple Blog ensures efficient performance and smooth navigation.
 
 ## Setup
 
-To get started with Github Explorer, follow these steps:
+To get started with Simple Blog, follow these steps:
 
 1. Run the following commands:
    ```bash
@@ -28,7 +26,7 @@ To get started with Github Explorer, follow these steps:
 
 ## Structure
 
-Github Explorer is structured as follows:
+Simple Blog is structured as follows:
 
 - **Dependency Injection**: Utilizes GetIt & Injectable for managing dependencies.
 - **Routing**: Implements auto_route for efficient and structured routing.
