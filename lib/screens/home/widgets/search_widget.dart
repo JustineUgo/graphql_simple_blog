@@ -44,7 +44,7 @@ class _SearchState extends State<Search> {
         },
         decoration: InputDecoration(
           contentPadding: const EdgeInsets.all(4),
-          hintText: 'Type and press enter to search',
+          hintText: 'Type to search',
           hintStyle: context.textStyle.copyWith(fontSize: 12, color: Colors.white30, fontWeight: FontWeight.w600),
           border: OutlineInputBorder(
             borderSide: BorderSide.none,

@@ -69,8 +69,8 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                     const Spacer(),
                     TextButton(
                         style: ButtonStyle(backgroundColor: MaterialStateProperty.all(Colors.purple)),
-                        onPressed: () {
-                          context.router.push(PostRoute(post: null));
+                        onPressed: () async {
+                          await context.router.push(PostRoute(post: null));
                           if (widget.refetchCallback != null) widget.refetchCallback!();
                         },
                         child: Text("Add Post", style: context.textStyle)),

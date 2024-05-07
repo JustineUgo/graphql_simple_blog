@@ -32,6 +32,20 @@ class _PostScreenState extends State<PostScreen> {
     _bodyController.text = post?.body ?? '';
   }
 
+  bool checkForm() {
+    if (_titleController.text.trim().isEmpty) {
+      getIt<Toast>().showMessage(context: context, title: "Incomplete Form!", message: "Fill up the title field", type: ToastType.info);
+      return false;
+    } else if (_subtitleController.text.trim().isEmpty) {
+      getIt<Toast>().showMessage(context: context, title: "Incomplete Form!", message: "Fill up the subtitle field", type: ToastType.info);
+      return false;
+    } else if (_bodyController.text.trim().isEmpty) {
+      getIt<Toast>().showMessage(context: context, title: "Incomplete Form!", message: "Fill up the body field", type: ToastType.info);
+      return false;
+    }
+    return true;
+  }
+
   @override
   Widget build(BuildContext context) {
     bool isNewPost = widget.post == null;
@@ -51,87 +65,78 @@ class _PostScreenState extends State<PostScreen> {
                     Text("Post Details", style: context.textStyle.copyWith(fontWeight: FontWeight.w500, fontSize: 20)),
                   ],
                 ),
-                const SizedBox(height: 20),
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Text(
-                    'Title',
-                    style: context.textStyle.copyWith(fontWeight: FontWeight.w400, fontSize: 14, color: Colors.white),
-                  ),
+                Text("You can edit the post title, subtitle and body here.", style: context.textStyle.copyWith(fontWeight: FontWeight.w300, fontSize: 14)),
+                const SizedBox(height: 30),
+                Text(
+                  'Title',
+                  style: context.textStyle.copyWith(fontWeight: FontWeight.w400, fontSize: 14, color: Colors.white),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: TextField(
-                    controller: _titleController,
-                    decoration: InputDecoration(
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: const BorderRadius.all(Radius.circular(6)),
-                        borderSide: BorderSide(color: Colors.white.withOpacity(0)),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: const BorderRadius.all(Radius.circular(6)),
-                        borderSide: BorderSide(color: Colors.white.withOpacity(0)),
-                      ),
-                      contentPadding: const EdgeInsets.all(8),
-                      fillColor: Colors.white10,
-                      filled: true,
+                TextField(
+                  style: context.textStyle,
+                  controller: _titleController,
+                  decoration: InputDecoration(
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: const BorderRadius.all(Radius.circular(6)),
+                      borderSide: BorderSide(color: Colors.white.withOpacity(0)),
                     ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: const BorderRadius.all(Radius.circular(6)),
+                      borderSide: BorderSide(color: Colors.white.withOpacity(0)),
+                    ),
+                    contentPadding: const EdgeInsets.all(8),
+                    fillColor: Colors.white10,
+                    filled: true,
                   ),
                 ),
                 const SizedBox(height: 20),
-                Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Text(
-                    'Subtitle',
-                    style: context.textStyle.copyWith(fontWeight: FontWeight.w400, fontSize: 14, color: Colors.white),
-                  ),
+                Text(
+                  'Subtitle',
+                  style: context.textStyle.copyWith(fontWeight: FontWeight.w400, fontSize: 14, color: Colors.white),
                 ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: TextField(
-                    controller: _subtitleController,
-                    maxLines: 4,
-                    minLines: 2,
-                    decoration: InputDecoration(
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: const BorderRadius.all(Radius.circular(6)),
-                        borderSide: BorderSide(color: Colors.white.withOpacity(0)),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: const BorderRadius.all(Radius.circular(6)),
-                        borderSide: BorderSide(color: Colors.white.withOpacity(0)),
-                      ),
-                      contentPadding: const EdgeInsets.all(8),
-                      fillColor: Colors.white10,
-                      filled: true,
+                TextField(
+                  style: context.textStyle,
+                  controller: _subtitleController,
+                  maxLines: 4,
+                  minLines: 2,
+                  decoration: InputDecoration(
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: const BorderRadius.all(Radius.circular(6)),
+                      borderSide: BorderSide(color: Colors.white.withOpacity(0)),
                     ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: const BorderRadius.all(Radius.circular(6)),
+                      borderSide: BorderSide(color: Colors.white.withOpacity(0)),
+                    ),
+                    contentPadding: const EdgeInsets.all(8),
+                    fillColor: Colors.white10,
+                    filled: true,
                   ),
                 ),
                 const SizedBox(height: 30),
-                Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: TextField(
-                    maxLines: 9,
-                    minLines: 6,
-                    controller: _bodyController,
-                    decoration: InputDecoration(
-                      focusedBorder: OutlineInputBorder(
-                        borderRadius: const BorderRadius.all(Radius.circular(6)),
-                        borderSide: BorderSide(color: Colors.white.withOpacity(0)),
-                      ),
-                      enabledBorder: OutlineInputBorder(
-                        borderRadius: const BorderRadius.all(Radius.circular(6)),
-                        borderSide: BorderSide(color: Colors.white.withOpacity(0)),
-                      ),
-                      contentPadding: const EdgeInsets.all(8),
-                      fillColor: Colors.white10,
-                      filled: true,
-                      hintText: 'Input body of the post',
-                      hintStyle: context.textStyle.copyWith(fontSize: 14, color: Colors.white.withOpacity(.5)),
+                TextField(
+                  style: context.textStyle,
+                  maxLines: 9,
+                  minLines: 6,
+                  controller: _bodyController,
+                  decoration: InputDecoration(
+                    focusedBorder: OutlineInputBorder(
+                      borderRadius: const BorderRadius.all(Radius.circular(6)),
+                      borderSide: BorderSide(color: Colors.white.withOpacity(0)),
                     ),
+                    enabledBorder: OutlineInputBorder(
+                      borderRadius: const BorderRadius.all(Radius.circular(6)),
+                      borderSide: BorderSide(color: Colors.white.withOpacity(0)),
+                    ),
+                    contentPadding: const EdgeInsets.all(8),
+                    fillColor: Colors.white10,
+                    filled: true,
+                    hintText: 'Input body of the post',
+                    hintStyle: context.textStyle.copyWith(fontSize: 14, color: Colors.white.withOpacity(.5)),
                   ),
                 ),
-                const SizedBox(height: 50),
+                const SizedBox(height: 40),
+
+                // ADD
                 if (isNewPost)
                   Visibility(
                     visible: isAddPostVisible,
@@ -162,17 +167,22 @@ class _PostScreenState extends State<PostScreen> {
                                   minimumSize: MaterialStateProperty.all(const Size(double.infinity, 50)),
                                   backgroundColor: MaterialStateProperty.all(Colors.purple),
                                 ),
-                                onPressed: () => runMutation({
-                                  "title": _titleController.text,
-                                  "subTitle": _subtitleController.text,
-                                  "body": _bodyController.text,
-                                }),
+                                onPressed: () {
+                                  if (checkForm())
+                                    runMutation({
+                                      "title": _titleController.text,
+                                      "subTitle": _subtitleController.text,
+                                      "body": _bodyController.text,
+                                    });
+                                },
                                 child: Text('Add Post', style: context.textStyle),
                               );
                       },
                     ),
                   ),
                 const SizedBox(height: 10),
+
+                // EDIT
                 if (!isNewPost)
                   Mutation(
                     options: MutationOptions(
@@ -200,17 +210,22 @@ class _PostScreenState extends State<PostScreen> {
                                 minimumSize: MaterialStateProperty.all(const Size(double.infinity, 50)),
                                 backgroundColor: MaterialStateProperty.all(Colors.purple),
                               ),
-                              onPressed: () => runMutation({
-                                "blogId": widget.post!.id,
-                                "title": _titleController.text,
-                                "subTitle": _subtitleController.text,
-                                "body": _bodyController.text,
-                              }),
+                              onPressed: () {
+                                if (checkForm())
+                                  runMutation({
+                                    "blogId": widget.post!.id,
+                                    "title": _titleController.text,
+                                    "subTitle": _subtitleController.text,
+                                    "body": _bodyController.text,
+                                  });
+                              },
                               child: Text('Edit Post', style: context.textStyle),
                             );
                     },
                   ),
                 const SizedBox(height: 10),
+
+                // DELETE
                 if (widget.post != null)
                   Mutation(
                     options: MutationOptions(
@@ -248,4 +263,4 @@ class _PostScreenState extends State<PostScreen> {
   }
 }
 
-//TODO: verify all form fields
+//TODO: bookmark
