@@ -7,7 +7,7 @@ import 'injection.config.dart';
 final getIt = GetIt.instance;
 
 @InjectableInit()
-Future<void> configureDependencies() async {
+void configureDependencies() {
   GetIt.I.registerSingleton(BlogRouter());
-  await getIt.init();
+  getIt.init();
 }

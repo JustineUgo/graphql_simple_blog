@@ -1,4 +1,3 @@
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:simple_blog/theme/theme.dart';
@@ -29,17 +28,19 @@ class _SearchState extends State<Search> {
         key: const Key('search-text-field'),
         style: context.textStyle,
         controller: _searchController,
-        onSubmitted: (term) {
-          widget.onQuery(term);
-          _searchController.clear();
-          setState(() => isSearching = false);
-        },
+        // onSubmitted: (term) {
+        //   widget.onQuery(term);
+        //   _searchController.clear();
+        //   setState(() => isSearching = false);
+        // },
         onChanged: (query) {
           if (!isSearching && _searchController.text.isNotEmpty) {
             setState(() => isSearching = true);
           } else if (isSearching && _searchController.text.isEmpty) {
             setState(() => isSearching = false);
           }
+
+          widget.onQuery(query);
         },
         decoration: InputDecoration(
           contentPadding: const EdgeInsets.all(4),
@@ -55,6 +56,7 @@ class _SearchState extends State<Search> {
                   : () {
                       _searchController.clear();
                       setState(() => isSearching = false);
+                      widget.onQuery('');
                     },
               child: Icon(isSearching ? Icons.close : CupertinoIcons.search, color: Colors.white30)),
         ),
