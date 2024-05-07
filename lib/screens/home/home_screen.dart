@@ -84,6 +84,14 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
   final PageController pageController = PageController();
   int pageIndex = 0;
 
+  void onQuery(String query) {
+    if (query.isNotEmpty) {
+      setState(() => posts = widget.posts.where((post) => post.title.toLowerCase().contains(query.toLowerCase())).toList());
+    } else {
+      setState(() => posts = widget.posts.toList());
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -95,13 +103,10 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
             children: [
               Text("Simple Blog", style: context.textStyle.copyWith(fontWeight: FontWeight.w500, fontSize: 20)),
               const SizedBox(height: 20),
-              Search(onQuery: (query) {
-                if (query.isNotEmpty) {
-                  setState(() => posts = widget.posts.where((post) => post.title.toLowerCase().contains(query.toLowerCase())).toList());
-                } else {
-                  setState(() => posts = widget.posts.toList());
-                }
-              }),
+              Visibility(
+                visible: pageIndex == 0,
+                child: Search(onQuery: onQuery),
+              ),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 30),
                 child: Row(
@@ -134,6 +139,7 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                 return PageView(
                   onPageChanged: (value) {
                     setState(() => pageIndex = value);
+                    onQuery('');
                   },
                   controller: pageController,
                   children: [
