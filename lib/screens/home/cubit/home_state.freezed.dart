@@ -19,50 +19,38 @@ mixin _$HomeState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(List<Post> posts) loaded,
-    required TResult Function(dynamic error) error,
+    required TResult Function(List<Post> posts) bookmarked,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(List<Post> posts)? loaded,
-    TResult? Function(dynamic error)? error,
+    TResult? Function(List<Post> posts)? bookmarked,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(List<Post> posts)? loaded,
-    TResult Function(dynamic error)? error,
+    TResult Function(List<Post> posts)? bookmarked,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(HomeInitialState value) initial,
-    required TResult Function(HomeLoadingState value) loading,
-    required TResult Function(HomeLoadedState value) loaded,
-    required TResult Function(HomeErrorState value) error,
+    required TResult Function(HomeBookmarkedState value) bookmarked,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(HomeInitialState value)? initial,
-    TResult? Function(HomeLoadingState value)? loading,
-    TResult? Function(HomeLoadedState value)? loaded,
-    TResult? Function(HomeErrorState value)? error,
+    TResult? Function(HomeBookmarkedState value)? bookmarked,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(HomeInitialState value)? initial,
-    TResult Function(HomeLoadingState value)? loading,
-    TResult Function(HomeLoadedState value)? loaded,
-    TResult Function(HomeErrorState value)? error,
+    TResult Function(HomeBookmarkedState value)? bookmarked,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -124,9 +112,7 @@ class _$HomeInitialStateImpl implements HomeInitialState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(List<Post> posts) loaded,
-    required TResult Function(dynamic error) error,
+    required TResult Function(List<Post> posts) bookmarked,
   }) {
     return initial();
   }
@@ -135,9 +121,7 @@ class _$HomeInitialStateImpl implements HomeInitialState {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(List<Post> posts)? loaded,
-    TResult? Function(dynamic error)? error,
+    TResult? Function(List<Post> posts)? bookmarked,
   }) {
     return initial?.call();
   }
@@ -146,9 +130,7 @@ class _$HomeInitialStateImpl implements HomeInitialState {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(List<Post> posts)? loaded,
-    TResult Function(dynamic error)? error,
+    TResult Function(List<Post> posts)? bookmarked,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -161,9 +143,7 @@ class _$HomeInitialStateImpl implements HomeInitialState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(HomeInitialState value) initial,
-    required TResult Function(HomeLoadingState value) loading,
-    required TResult Function(HomeLoadedState value) loaded,
-    required TResult Function(HomeErrorState value) error,
+    required TResult Function(HomeBookmarkedState value) bookmarked,
   }) {
     return initial(this);
   }
@@ -172,9 +152,7 @@ class _$HomeInitialStateImpl implements HomeInitialState {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(HomeInitialState value)? initial,
-    TResult? Function(HomeLoadingState value)? loading,
-    TResult? Function(HomeLoadedState value)? loaded,
-    TResult? Function(HomeErrorState value)? error,
+    TResult? Function(HomeBookmarkedState value)? bookmarked,
   }) {
     return initial?.call(this);
   }
@@ -183,9 +161,7 @@ class _$HomeInitialStateImpl implements HomeInitialState {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(HomeInitialState value)? initial,
-    TResult Function(HomeLoadingState value)? loading,
-    TResult Function(HomeLoadedState value)? loaded,
-    TResult Function(HomeErrorState value)? error,
+    TResult Function(HomeBookmarkedState value)? bookmarked,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -200,134 +176,20 @@ abstract class HomeInitialState implements HomeState {
 }
 
 /// @nodoc
-abstract class _$$HomeLoadingStateImplCopyWith<$Res> {
-  factory _$$HomeLoadingStateImplCopyWith(_$HomeLoadingStateImpl value,
-          $Res Function(_$HomeLoadingStateImpl) then) =
-      __$$HomeLoadingStateImplCopyWithImpl<$Res>;
-}
-
-/// @nodoc
-class __$$HomeLoadingStateImplCopyWithImpl<$Res>
-    extends _$HomeStateCopyWithImpl<$Res, _$HomeLoadingStateImpl>
-    implements _$$HomeLoadingStateImplCopyWith<$Res> {
-  __$$HomeLoadingStateImplCopyWithImpl(_$HomeLoadingStateImpl _value,
-      $Res Function(_$HomeLoadingStateImpl) _then)
-      : super(_value, _then);
-}
-
-/// @nodoc
-
-class _$HomeLoadingStateImpl implements HomeLoadingState {
-  const _$HomeLoadingStateImpl();
-
-  @override
-  String toString() {
-    return 'HomeState.loading()';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType && other is _$HomeLoadingStateImpl);
-  }
-
-  @override
-  int get hashCode => runtimeType.hashCode;
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(List<Post> posts) loaded,
-    required TResult Function(dynamic error) error,
-  }) {
-    return loading();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(List<Post> posts)? loaded,
-    TResult? Function(dynamic error)? error,
-  }) {
-    return loading?.call();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(List<Post> posts)? loaded,
-    TResult Function(dynamic error)? error,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading();
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(HomeInitialState value) initial,
-    required TResult Function(HomeLoadingState value) loading,
-    required TResult Function(HomeLoadedState value) loaded,
-    required TResult Function(HomeErrorState value) error,
-  }) {
-    return loading(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(HomeInitialState value)? initial,
-    TResult? Function(HomeLoadingState value)? loading,
-    TResult? Function(HomeLoadedState value)? loaded,
-    TResult? Function(HomeErrorState value)? error,
-  }) {
-    return loading?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(HomeInitialState value)? initial,
-    TResult Function(HomeLoadingState value)? loading,
-    TResult Function(HomeLoadedState value)? loaded,
-    TResult Function(HomeErrorState value)? error,
-    required TResult orElse(),
-  }) {
-    if (loading != null) {
-      return loading(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class HomeLoadingState implements HomeState {
-  const factory HomeLoadingState() = _$HomeLoadingStateImpl;
-}
-
-/// @nodoc
-abstract class _$$HomeLoadedStateImplCopyWith<$Res> {
-  factory _$$HomeLoadedStateImplCopyWith(_$HomeLoadedStateImpl value,
-          $Res Function(_$HomeLoadedStateImpl) then) =
-      __$$HomeLoadedStateImplCopyWithImpl<$Res>;
+abstract class _$$HomeBookmarkedStateImplCopyWith<$Res> {
+  factory _$$HomeBookmarkedStateImplCopyWith(_$HomeBookmarkedStateImpl value,
+          $Res Function(_$HomeBookmarkedStateImpl) then) =
+      __$$HomeBookmarkedStateImplCopyWithImpl<$Res>;
   @useResult
   $Res call({List<Post> posts});
 }
 
 /// @nodoc
-class __$$HomeLoadedStateImplCopyWithImpl<$Res>
-    extends _$HomeStateCopyWithImpl<$Res, _$HomeLoadedStateImpl>
-    implements _$$HomeLoadedStateImplCopyWith<$Res> {
-  __$$HomeLoadedStateImplCopyWithImpl(
-      _$HomeLoadedStateImpl _value, $Res Function(_$HomeLoadedStateImpl) _then)
+class __$$HomeBookmarkedStateImplCopyWithImpl<$Res>
+    extends _$HomeStateCopyWithImpl<$Res, _$HomeBookmarkedStateImpl>
+    implements _$$HomeBookmarkedStateImplCopyWith<$Res> {
+  __$$HomeBookmarkedStateImplCopyWithImpl(_$HomeBookmarkedStateImpl _value,
+      $Res Function(_$HomeBookmarkedStateImpl) _then)
       : super(_value, _then);
 
   @pragma('vm:prefer-inline')
@@ -335,7 +197,7 @@ class __$$HomeLoadedStateImplCopyWithImpl<$Res>
   $Res call({
     Object? posts = null,
   }) {
-    return _then(_$HomeLoadedStateImpl(
+    return _then(_$HomeBookmarkedStateImpl(
       posts: null == posts
           ? _value._posts
           : posts // ignore: cast_nullable_to_non_nullable
@@ -346,8 +208,8 @@ class __$$HomeLoadedStateImplCopyWithImpl<$Res>
 
 /// @nodoc
 
-class _$HomeLoadedStateImpl implements HomeLoadedState {
-  const _$HomeLoadedStateImpl({required final List<Post> posts})
+class _$HomeBookmarkedStateImpl implements HomeBookmarkedState {
+  const _$HomeBookmarkedStateImpl({required final List<Post> posts})
       : _posts = posts;
 
   final List<Post> _posts;
@@ -360,14 +222,14 @@ class _$HomeLoadedStateImpl implements HomeLoadedState {
 
   @override
   String toString() {
-    return 'HomeState.loaded(posts: $posts)';
+    return 'HomeState.bookmarked(posts: $posts)';
   }
 
   @override
   bool operator ==(Object other) {
     return identical(this, other) ||
         (other.runtimeType == runtimeType &&
-            other is _$HomeLoadedStateImpl &&
+            other is _$HomeBookmarkedStateImpl &&
             const DeepCollectionEquality().equals(other._posts, _posts));
   }
 
@@ -378,43 +240,37 @@ class _$HomeLoadedStateImpl implements HomeLoadedState {
   @JsonKey(ignore: true)
   @override
   @pragma('vm:prefer-inline')
-  _$$HomeLoadedStateImplCopyWith<_$HomeLoadedStateImpl> get copyWith =>
-      __$$HomeLoadedStateImplCopyWithImpl<_$HomeLoadedStateImpl>(
+  _$$HomeBookmarkedStateImplCopyWith<_$HomeBookmarkedStateImpl> get copyWith =>
+      __$$HomeBookmarkedStateImplCopyWithImpl<_$HomeBookmarkedStateImpl>(
           this, _$identity);
 
   @override
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(List<Post> posts) loaded,
-    required TResult Function(dynamic error) error,
+    required TResult Function(List<Post> posts) bookmarked,
   }) {
-    return loaded(posts);
+    return bookmarked(posts);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(List<Post> posts)? loaded,
-    TResult? Function(dynamic error)? error,
+    TResult? Function(List<Post> posts)? bookmarked,
   }) {
-    return loaded?.call(posts);
+    return bookmarked?.call(posts);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(List<Post> posts)? loaded,
-    TResult Function(dynamic error)? error,
+    TResult Function(List<Post> posts)? bookmarked,
     required TResult orElse(),
   }) {
-    if (loaded != null) {
-      return loaded(posts);
+    if (bookmarked != null) {
+      return bookmarked(posts);
     }
     return orElse();
   }
@@ -423,193 +279,40 @@ class _$HomeLoadedStateImpl implements HomeLoadedState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(HomeInitialState value) initial,
-    required TResult Function(HomeLoadingState value) loading,
-    required TResult Function(HomeLoadedState value) loaded,
-    required TResult Function(HomeErrorState value) error,
+    required TResult Function(HomeBookmarkedState value) bookmarked,
   }) {
-    return loaded(this);
+    return bookmarked(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult? Function(HomeInitialState value)? initial,
-    TResult? Function(HomeLoadingState value)? loading,
-    TResult? Function(HomeLoadedState value)? loaded,
-    TResult? Function(HomeErrorState value)? error,
+    TResult? Function(HomeBookmarkedState value)? bookmarked,
   }) {
-    return loaded?.call(this);
+    return bookmarked?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(HomeInitialState value)? initial,
-    TResult Function(HomeLoadingState value)? loading,
-    TResult Function(HomeLoadedState value)? loaded,
-    TResult Function(HomeErrorState value)? error,
+    TResult Function(HomeBookmarkedState value)? bookmarked,
     required TResult orElse(),
   }) {
-    if (loaded != null) {
-      return loaded(this);
+    if (bookmarked != null) {
+      return bookmarked(this);
     }
     return orElse();
   }
 }
 
-abstract class HomeLoadedState implements HomeState {
-  const factory HomeLoadedState({required final List<Post> posts}) =
-      _$HomeLoadedStateImpl;
+abstract class HomeBookmarkedState implements HomeState {
+  const factory HomeBookmarkedState({required final List<Post> posts}) =
+      _$HomeBookmarkedStateImpl;
 
   List<Post> get posts;
   @JsonKey(ignore: true)
-  _$$HomeLoadedStateImplCopyWith<_$HomeLoadedStateImpl> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
-abstract class _$$HomeErrorStateImplCopyWith<$Res> {
-  factory _$$HomeErrorStateImplCopyWith(_$HomeErrorStateImpl value,
-          $Res Function(_$HomeErrorStateImpl) then) =
-      __$$HomeErrorStateImplCopyWithImpl<$Res>;
-  @useResult
-  $Res call({dynamic error});
-}
-
-/// @nodoc
-class __$$HomeErrorStateImplCopyWithImpl<$Res>
-    extends _$HomeStateCopyWithImpl<$Res, _$HomeErrorStateImpl>
-    implements _$$HomeErrorStateImplCopyWith<$Res> {
-  __$$HomeErrorStateImplCopyWithImpl(
-      _$HomeErrorStateImpl _value, $Res Function(_$HomeErrorStateImpl) _then)
-      : super(_value, _then);
-
-  @pragma('vm:prefer-inline')
-  @override
-  $Res call({
-    Object? error = freezed,
-  }) {
-    return _then(_$HomeErrorStateImpl(
-      error: freezed == error
-          ? _value.error
-          : error // ignore: cast_nullable_to_non_nullable
-              as dynamic,
-    ));
-  }
-}
-
-/// @nodoc
-
-class _$HomeErrorStateImpl implements HomeErrorState {
-  const _$HomeErrorStateImpl({this.error});
-
-  @override
-  final dynamic error;
-
-  @override
-  String toString() {
-    return 'HomeState.error(error: $error)';
-  }
-
-  @override
-  bool operator ==(Object other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is _$HomeErrorStateImpl &&
-            const DeepCollectionEquality().equals(other.error, error));
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(error));
-
-  @JsonKey(ignore: true)
-  @override
-  @pragma('vm:prefer-inline')
-  _$$HomeErrorStateImplCopyWith<_$HomeErrorStateImpl> get copyWith =>
-      __$$HomeErrorStateImplCopyWithImpl<_$HomeErrorStateImpl>(
-          this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() initial,
-    required TResult Function() loading,
-    required TResult Function(List<Post> posts) loaded,
-    required TResult Function(dynamic error) error,
-  }) {
-    return error(this.error);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult? Function()? initial,
-    TResult? Function()? loading,
-    TResult? Function(List<Post> posts)? loaded,
-    TResult? Function(dynamic error)? error,
-  }) {
-    return error?.call(this.error);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? initial,
-    TResult Function()? loading,
-    TResult Function(List<Post> posts)? loaded,
-    TResult Function(dynamic error)? error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(this.error);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(HomeInitialState value) initial,
-    required TResult Function(HomeLoadingState value) loading,
-    required TResult Function(HomeLoadedState value) loaded,
-    required TResult Function(HomeErrorState value) error,
-  }) {
-    return error(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult? Function(HomeInitialState value)? initial,
-    TResult? Function(HomeLoadingState value)? loading,
-    TResult? Function(HomeLoadedState value)? loaded,
-    TResult? Function(HomeErrorState value)? error,
-  }) {
-    return error?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(HomeInitialState value)? initial,
-    TResult Function(HomeLoadingState value)? loading,
-    TResult Function(HomeLoadedState value)? loaded,
-    TResult Function(HomeErrorState value)? error,
-    required TResult orElse(),
-  }) {
-    if (error != null) {
-      return error(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class HomeErrorState implements HomeState {
-  const factory HomeErrorState({final dynamic error}) = _$HomeErrorStateImpl;
-
-  dynamic get error;
-  @JsonKey(ignore: true)
-  _$$HomeErrorStateImplCopyWith<_$HomeErrorStateImpl> get copyWith =>
+  _$$HomeBookmarkedStateImplCopyWith<_$HomeBookmarkedStateImpl> get copyWith =>
       throw _privateConstructorUsedError;
 }

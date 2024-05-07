@@ -1,10 +1,14 @@
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:get_it_mixin/get_it_mixin.dart';
 import 'package:graphql_flutter/graphql_flutter.dart';
+import 'package:simple_blog/injection/injection.dart';
 import 'package:simple_blog/models/post.dart';
 import 'package:simple_blog/queries.dart';
+import 'package:simple_blog/screens/home/cubit/home_cubit.dart';
+import 'package:simple_blog/screens/home/cubit/home_state.dart';
 import 'package:simple_blog/screens/home/widgets/search_widget.dart';
 import 'package:simple_blog/theme/theme.dart';
 
@@ -61,7 +65,7 @@ class _HomeScreenState extends State<HomeScreen> with GetItStateMixin {
 }
 
 class Home extends StatefulWidget {
-  const Home({super.key, required this.posts});
+  Home({super.key, required this.posts});
   final List<Post> posts;
 
   @override
@@ -69,17 +73,16 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
-  late AnimationController animation;
-
   @override
   void initState() {
     super.initState();
     posts = widget.posts;
-    animation = AnimationController(vsync: this, duration: const Duration(seconds: 5));
-    animation.forward();
   }
 
   List<Post> posts = [];
+  List<Post> bookmarkedPosts = [];
+  final PageController pageController = PageController();
+  int pageIndex = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -98,15 +101,20 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
                 } else {
                   setState(() => posts = widget.posts.toList());
                 }
-                animation.repeat();
               }),
               Padding(
                 padding: const EdgeInsets.symmetric(vertical: 30),
                 child: Row(
                   children: [
-                    Text("All", style: context.textStyle.copyWith(fontWeight: FontWeight.w500)),
+                    GestureDetector(
+                      onTap: () => pageController.jumpToPage(0),
+                      child: Text("All", style: context.textStyle.copyWith(fontWeight: FontWeight.w500, color: pageIndex == 0 ? null : Colors.white54)),
+                    ),
                     const SizedBox(width: 30),
-                    Text("Bookmarked", style: context.textStyle.copyWith(fontWeight: FontWeight.w500, color: Colors.white54)),
+                    GestureDetector(
+                      onTap: () => pageController.jumpToPage(1),
+                      child: Text("Bookmarked", style: context.textStyle.copyWith(fontWeight: FontWeight.w500, color: pageIndex == 1 ? null : Colors.white54)),
+                    ),
                   ],
                 ),
               ),
@@ -114,29 +122,77 @@ class _HomeState extends State<Home> with SingleTickerProviderStateMixin {
           ),
         ),
         Expanded(
-          child: PageView(
-            children: [
-              SingleChildScrollView(
-                child: Column(
-                  children: posts.map(
-                    (post) {
-                      return Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 5),
-                          child: ListTile(
-                            title: Text(post.title, style: context.textStyle.copyWith(fontWeight: FontWeight.w600)),
-                            subtitle: Text(post.subTitle, style: context.textStyle.copyWith(fontSize: 14)),
-                            trailing: const Icon(CupertinoIcons.chevron_forward),
-                          ),
-                        );
-                    },
-                  ).toList(),
-                ),
-              ),
-            ],
-          ),
+          child: BlocConsumer<HomeCubit, HomeState>(
+              bloc: getIt<HomeCubit>(),
+              listener: (context, state) {
+                state.maybeWhen(
+                  bookmarked: (posts) => setState(() => bookmarkedPosts = posts),
+                  orElse: () {},
+                );
+              },
+              builder: (context, state) {
+                return PageView(
+                  onPageChanged: (value) {
+                    setState(() => pageIndex = value);
+                  },
+                  controller: pageController,
+                  children: [
+                    SingleChildScrollView(
+                      child: Column(
+                        children: posts.map(
+                          (post) {
+                            bool isBookmarked = bookmarkedPosts.contains(post);
+                            return BlogTile(bookmarkedPosts: bookmarkedPosts, isBookmarked: isBookmarked, post: post);
+                          },
+                        ).toList(),
+                      ),
+                    ),
+                    SingleChildScrollView(
+                      child: Column(
+                        children: bookmarkedPosts.map(
+                          (post) {
+                            bool isBookmarked = bookmarkedPosts.contains(post);
+                            return BlogTile(bookmarkedPosts: bookmarkedPosts, isBookmarked: isBookmarked, post: post);
+                          },
+                        ).toList(),
+                      ),
+                    ),
+                  ],
+                );
+              }),
         ),
         const SizedBox(height: 20),
       ],
+    );
+  }
+}
+
+class BlogTile extends StatelessWidget {
+  const BlogTile({
+    super.key,
+    required this.bookmarkedPosts,
+    required this.isBookmarked,
+    required this.post,
+  });
+
+  final List<Post> bookmarkedPosts;
+  final Post post;
+  final bool isBookmarked;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 5),
+      child: ListTile(
+        contentPadding: const EdgeInsets.only(right: Sizes.baseSingle),
+        leading: IconButton(
+          onPressed: () => getIt<HomeCubit>().bookmark(bookmarkedPosts, post, isBookmarked),
+          icon: isBookmarked ? const Icon(CupertinoIcons.bookmark_fill, color: Colors.white) : const Icon(CupertinoIcons.bookmark),
+        ),
+        title: Text(post.title, style: context.textStyle.copyWith(fontWeight: FontWeight.w600)),
+        subtitle: Text(post.subTitle, style: context.textStyle.copyWith(fontSize: 14)),
+        trailing: const Icon(CupertinoIcons.chevron_forward),
+      ),
     );
   }
 }

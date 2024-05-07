@@ -6,10 +6,8 @@ part 'home_state.freezed.dart';
 class HomeState with _$HomeState{
   const factory HomeState.initial() = HomeInitialState;
   
-  const factory HomeState.loading() = HomeLoadingState;
   
-  const factory HomeState.loaded({required List<Post> posts}) = HomeLoadedState;
+  const factory HomeState.bookmarked({required List<Post> posts}) = HomeBookmarkedState;
   
-  const factory HomeState.error({dynamic error}) = HomeErrorState;
   
 }
